@@ -1,0 +1,11 @@
+hostname 01-edds-HWc1-01 //имя из столбца hostname
+inet ifconfig eth0 up
+inet ifconfig eth1 up
+inet ifconfig eth3 up
+inet ifconfig eth4 up
+inet bonding add 0 mode 802.3ad slaves eth0 eth1
+inet ifconfig bond0 up
+inet ifconfig bond0 class trunk
+inet ifconfig bond0 vlan add 100
+inet ifconfig bond0 vlan add 101
+inet ifconfig bond0 vlan add 102

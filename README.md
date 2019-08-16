@@ -3,7 +3,7 @@ ViPNet Coordinator HW configuration files generator, based on data stored in Exc
 
 ## Getting Started
 ViPNet Coordinator HW Config Generator is a python script. So to use it you need python 3 (3.5+) to be installed.
-It support only `xlsx` format, not `xls`. 
+ViPNet Coordinator HW configuration files generator supports only `xlsx` format, not `xls`. 
 
 ###  Prerequisites
 To run this script you need:
@@ -11,7 +11,7 @@ To run this script you need:
 * openpyxl (lib to communicate with Excel-files)
 * glog (logging lib) 
 
-If you use pip
+If you use pip, just run following commands
 ```bash
 pip install openpyxl
 pip install glog
@@ -22,7 +22,7 @@ To run  script you need to provide path to excel file you want to use to generat
 For example:
 
 ```bash
-python3 main.py -f ./hw-data.xlsx
+python3 main.py -f ./_data_/HW.xlsx -t ./cfg_templates/template_hw.txt
 ```
 
 ### Structure of data in Excel file

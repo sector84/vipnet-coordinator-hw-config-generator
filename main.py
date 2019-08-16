@@ -15,6 +15,7 @@ DEBUG = 10
 NOTSET = 0
 """)
 ap.add_argument("-f", "--file", required=True, help="path to the input xlsx file to generate configs to")
+ap.add_argument("-t", "--template", required=True, help="path to the template to use to generate config files")
 
 args = vars(ap.parse_args())
 log.setLevel(args['verbosity'])
@@ -29,7 +30,7 @@ def main():
     from xls import get_config_data
     from config import write_cfg
     for row in get_config_data():
-        write_cfg(row, 'ololo-pur-pur-pur.cfg')
+        write_cfg(row, f"{row['hostname']}.txt")
     log.info('main -> done')
 
 
