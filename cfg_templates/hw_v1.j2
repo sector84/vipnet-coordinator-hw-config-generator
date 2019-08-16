@@ -9,4 +9,28 @@ inet ifconfig bond0 class trunk
 inet ifconfig bond0 vlan add 100
 inet ifconfig bond0 vlan add 101
 inet ifconfig bond0 vlan add 102
-{{ data_specific_rows }}
+{{ data_specific_part1 }}
+inet route delete default
+{{ data_specific_part2 }}
+inet policy rule add ISP1-GW 1024 table default
+inet policy rule add ISP2-GW 1024 table default
+inet policy rule add ISP1-GW 1025 table name ISP1
+inet policy rule add ISP2-GW 1025 table name ISP2
+inet dgd mode on
+{{ data_specific_part3 }}
+inet policy rule add isp-both 1025 table name ISP1
+inet policy rule add isp-both 1026 table name ISP2
+inet policy rule add isp-both 1027 table name ISP1
+inet policy rule add isp-both 1028 table name ISP2
+inet policy rule add isp-both 1024 table default
+inet policy active isp-both
+inet dgd rule add both-rule action-priority 10 service route command policy active isp-both
+inet dgd rule add gw-1-rule match-next-hop GW-1-hop up
+inet dgd rule add gw-1-rule match-next-hop GW-2-hop down
+inet dgd rule add gw-1-rule action-priority 10 service route command policy active ISP1-GW
+inet dgd rule add gw-2-rule match-next-hop GW-1-hop down
+inet dgd rule add gw-2-rule match-next-hop GW-2-hop up
+inet dgd rule add gw-2-rule action-priority 10 service route command policy active ISP2-GW
+inet dgd rule add down-rule match-next-hop GW-1-hop down
+inet dgd rule add down-rule match-next-hop GW-2-hop down
+inet dgd rule add down-rule action-priority 10 service log command both-ISP-GWS-down
