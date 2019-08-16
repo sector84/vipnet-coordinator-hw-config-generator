@@ -29,6 +29,8 @@ For example:
 python3 main.py -f ./_data_/HW.xlsx -t hw_v1.j2
 ```
 
+Configuration files will be created in `_output` directory
+
 ### Structure of data in Excel file
 
 Structure of Excel file can be found in `cfg-data-template.xlsx`

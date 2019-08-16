@@ -11,13 +11,13 @@ class CfgWriter:
 
     def __init__(self):
         log.info('CfgWriter::init')
-        this_dir = os.path.dirname(os.path.join('./cfg_templates', 'cfg_templates'))
+
         # j2_env = Environment(loader=FileSystemLoader(this_dir), trim_blocks=True)
-        self.j2_env = Environment(loader=FileSystemLoader(this_dir))
-        # print
-        # j2_env.get_template('test_template.html').render(
-        #     title='Hellow Gist from GutHub'
-        # )
+        self.j2_env = Environment(loader=FileSystemLoader('./cfg_templates'))
+
+        self.out_dir = './_output'
+        if not os.path.exists(self.out_dir):
+            os.makedirs(self.out_dir)
 
     @classmethod
     def get_instance(cls):
@@ -59,7 +59,7 @@ class CfgWriter:
         render_data['data_specific_rows'] += f"inet ifconfig eth3 address {ip_address} netmask {ip_mask}\n"
 
         content = template.render(**render_data)
-        with open(f'./_output/{cfg_name}', 'w', encoding='utf-8') as cfg_file:
+        with open(os.path.join(self.out_dir, cfg_name), 'w', encoding='utf-8') as cfg_file:
             cfg_file.writelines(content)
 
         log.info(f"cfg::write : successfully")
