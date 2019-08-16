@@ -1,5 +1,7 @@
-from .cfg_writer import write_cfg
+from .cfg_writer import CfgWriter
+
+cfg_writer = CfgWriter.get_instance()
 
 __all__ = [
-    'write_cfg',
+    'cfg_writer',
 ]

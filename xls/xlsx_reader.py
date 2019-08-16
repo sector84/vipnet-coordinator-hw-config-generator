@@ -160,7 +160,7 @@ def get_config_data():
         can_add = True
         for k, v in data.items():
             if k != 'pass_enable' and not v:
-                log.info(f"xls::get_config_data :: row {i} skipped because of empty value in one of column ({row})")
+                log.info(f"xls::get_config_data :: row {i} skipped because of empty value in one of the columns")
                 can_add = False
                 break
         can_add and res.append(data)

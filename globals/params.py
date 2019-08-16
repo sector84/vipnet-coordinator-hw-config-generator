@@ -3,7 +3,7 @@ class GeneralData:
 
     def __init__(self):
         self.input_file_path = None
-        self.template_file_path = None
+        self.template = None
 
     @classmethod
     def get_instance(cls):
@@ -13,4 +13,4 @@ class GeneralData:
 
     def load_params(self, args):
         self.input_file_path = args['file']
-        self.template_file_path = args['template']
+        self.template = args['template']

@@ -28,9 +28,9 @@ log.info("General params initialized successfully.")
 def main():
     log.info("main")
     from xls import get_config_data
-    from config import write_cfg
+    from config import cfg_writer
     for row in get_config_data():
-        write_cfg(row, f"{row['hostname']}.txt")
+        cfg_writer.write(row, f"{row['hostname']}.txt")
     log.info('main -> done')
 
 
